@@ -134,7 +134,7 @@ class QTodoList : public QScrollView
 	void selectSubTodos(QTodoItem*,bool);
 	bool hasSubTodos(QTodoItem*);
 	bool isFirstSubTodo(QTodoItem*);
-	QTodoItem* parentTodo(QTodoItem*);
+	QTodoItem* parentTodo(const QTodoItem*);
 	QTodoSectionWidget* addSection();
 	void load(QTodoTopNode*);
 	void save(QTextStream&);
@@ -148,7 +148,8 @@ class QTodoList : public QScrollView
 	void prepareList();
 	void sort();
 	void sort(QTodoItem*);
-	int findWidget(QWidget*);
+	int itemPos(QTodoItem*);
+	int findWidget(const QWidget*);
 	//also below all sub-todos
 	int findPosBelowTodoItem(QTodoItem*);
 	//also above all sub-todos

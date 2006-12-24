@@ -179,9 +179,14 @@ QTodoSectionWidget* QTodoList::addSection()
 	return section; //FIXME
 }
 
-int QTodoList::findWidget(QWidget* widget)
+int QTodoList::findWidget(const QWidget* widget)
 {
-	return dynamic_cast<QBoxLayout*>(vbox->layout())->findWidget(widget);
+	return dynamic_cast<QBoxLayout*>(vbox->layout())->findWidget(const_cast<QWidget*>(widget));
+}
+
+int QTodoList::itemPos(QTodoItem* item)
+{
+	return findWidget(item);
 }
 
 void QTodoList::addSubTodo(QTodoItem* parent)
@@ -1189,7 +1194,7 @@ unsigned int QTodoListIterator::currentIndex()
 	return index;
 }
 
-QTodoItem* QTodoList::parentTodo(QTodoItem* item)
+QTodoItem* QTodoList::parentTodo(const QTodoItem* item)
 {
 	int item_pos = findWidget(item);
 	int item_depth = item->getDepth();

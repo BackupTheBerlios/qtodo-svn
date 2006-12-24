@@ -34,6 +34,7 @@ struct QTodoMisc
 
 	static int mainWidgetToCurrentDisplay();
 	static int windowToCurrentDisplay(const Window&);
+	static int activateWindow(const Window&);
 	static void debug(const QString& = 0, void* = 0);
 
 	static QString dateTime2LocalString(const QDateTime&);

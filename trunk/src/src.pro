@@ -14,9 +14,11 @@ FORMS += addlist.ui \
          help.ui \
          deadlines.ui \
          recovery.ui 
-TRANSLATIONS += qtodo_de.ts qtodo_fr.ts
+TRANSLATIONS += qtodo_de.ts \
+                qtodo_fr.ts 
 DISTFILES += qt_de.qm \
-             qtodo_de.qm qtodo_fr.qm 
+             qtodo_de.qm \
+             qtodo_fr.qm 
 IMAGES += calendar.xpm \
           configure.xpm \
           date.xpm \
@@ -129,7 +131,10 @@ HEADERS += qtodo_widget.h \
            qtodo_clock.h \
            qtodo_link_dialog.h \
            qtodo_datetimeedit.h \
-           qtodo_recovery_dialog.h 
+           qtodo_recovery_dialog.h \
+           qtodo_export_plugin_csv.h \
+           qtodo_export_plugin_rtf.h \
+           qtodo_export_plugin_png.h 
 SOURCES += main.cpp \
            qtodo_widget.cpp \
            qtodo_list.cpp \
@@ -177,7 +182,10 @@ SOURCES += main.cpp \
            qtodo_clock.cpp \
            qtodo_link_dialog.cpp \
            qtodo_datetimeedit.cpp \
-           qtodo_recovery_dialog.cpp 
+           qtodo_recovery_dialog.cpp \
+           qtodo_export_plugin_csv.cpp \
+           qtodo_export_plugin_rtf.cpp \
+           qtodo_export_plugin_png.cpp 
 TARGET = ../bin/qtodo
 CONFIG += release \
 warn_on \

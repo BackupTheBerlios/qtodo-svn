@@ -106,6 +106,7 @@ class QTodoItem : public QHBox
 	QString getCreatedLocalString() const;
 	QDateTime getDone() const;
 	QString getDoneString() const;
+	QString getDoneLocalString() const;
 	QString getDeadlineString() const;
 	QString getDeadlineLocalString() const;
 	QDate getDeadlineDate() const;
@@ -116,7 +117,7 @@ class QTodoItem : public QHBox
 	void save(QTextStream&);
 	bool filter(const QString&,int,int,int,const QDate& = QDate());
 	bool contains(const QString&);
-	QTodoList* list();
+	QTodoList* list() const;
 	static void updateColorsGlobally();
 	static void updateBordersGlobally();
 	static void updateMenuButtonGlobally();

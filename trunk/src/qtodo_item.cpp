@@ -340,8 +340,6 @@ void QTodoItem::setDone(const QDateTime& _done)
 		deadline_date->setEditable(false);
 		deadline_time->setTextMode(true);
 		deadline_time->setEditable(false);
-		/*if(deadline_combo->getCurrent() == NO_DEADLINE)
-			deadline_combo->hide();*/ //FIXME: do we want this?
 		deadline_combo->setFrozen(true);
 	}
 	else
@@ -410,6 +408,11 @@ QDateTime QTodoItem::getDone() const
 QString QTodoItem::getDoneString() const
 {
 	return done->getDateTimeString();
+}
+
+QString QTodoItem::getDoneLocalString() const
+{
+	return done->getDateTimeLocalString();
 }
 
 QString QTodoItem::getCreatedString() const
@@ -539,7 +542,7 @@ void QTodoItem::hasDeadline(int b)
 	}
 }
 
-QTodoList* QTodoItem::list()
+QTodoList* QTodoItem::list() const
 {
 	if(parent() && parent()->parent() && parent()->parent()->parent())
 		return dynamic_cast<QTodoList*>(parent()->parent()->parent());

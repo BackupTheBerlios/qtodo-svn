@@ -34,6 +34,11 @@ const QString& QTodoExportPluginBase::getString()
 	return result;
 }
 
+const QByteArray& QTodoExportPluginBase::getByteArray()
+{
+	return byte_result;
+}
+
 void QTodoExportPluginBase::save(QTextStream&)
 {
 }
@@ -56,6 +61,11 @@ QString QTodoExportPluginBase::name()
 QString QTodoExportPluginBase::description()
 {
 	return list_widget->getHeader()->getDescription();
+}
+
+QTodoListHeaderWidget* QTodoExportPluginBase::header()
+{
+	return list_widget->getHeader();
 }
 
 bool QTodoExportPlugins::add(fptr p)
@@ -87,12 +97,24 @@ void QTodoExportPluginBase::setTodoListWidget(QTodoListWidget* _list_widget)
 	list_widget = _list_widget;
 	list_iterator = new QTodoListIterator(list_widget->getList());
 	result.setLength(0);
+	byte_result.resize(0);
 }
 
 QTodoListIterator& QTodoExportPluginBase::listIterator()
 {
 	return *list_iterator;
 }
+
+void QTodoExportPluginBase::setBinary(bool b)
+{
+	binary = b;
+}
+
+bool QTodoExportPluginBase::isBinary()
+{
+	return binary;
+}
+
 
 
 

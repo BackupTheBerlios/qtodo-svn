@@ -24,6 +24,6 @@
 
 QTodoAbout::QTodoAbout(QWidget *parent, const char *name) : QTodoAboutBase(parent,name)
 {
-	version->setText(QString("<font size=\"+2\">")+QString("0.1.2")+QString("</font>"));
+	version->setText(QString("<font size=\"+2\">")+QString("0.1.3")+QString("</font>"));
 }
 

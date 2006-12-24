@@ -175,6 +175,24 @@ int QTodoMisc::windowToCurrentDisplay(const Window& win)
 	return ret;
 }
 
+int QTodoMisc::activateWindow(const Window& win)
+{
+	Display *disp; 
+	
+	if (! (disp = XOpenDisplay(NULL))) {
+		qDebug("Cannot open display.\n");
+		return EXIT_FAILURE;
+	}
+
+	int ret;
+
+	ret = activate_window(disp, win, false);
+
+	XCloseDisplay(disp);
+
+	return ret;
+}
+
 int QTodoMisc::client_msg(Display *disp, Window win, char *msg,
         unsigned long data0, unsigned long data1, 
         unsigned long data2, unsigned long data3,
@@ -220,7 +238,7 @@ int QTodoMisc::window_to_desktop (Display *disp, Window win, int desktop) {
         }
         desktop = *cur_desktop;
     }
-    delete cur_desktop;
+    delete[] cur_desktop;
 
     return client_msg(disp, win, "_NET_WM_DESKTOP", (unsigned long)desktop,
             0, 0, 0, 0);
@@ -247,7 +265,7 @@ int QTodoMisc::activate_window (Display *disp, Window win, bool switch_desktop) 
                     *desktop, 0, 0, 0, 0) != EXIT_SUCCESS) {
             qDebug("Cannot switch desktop.\n");
         }
-        delete desktop;
+        delete[] desktop;
     }
 
     client_msg(disp, win, "_NET_ACTIVE_WINDOW", 

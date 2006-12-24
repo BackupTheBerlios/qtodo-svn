@@ -101,10 +101,10 @@ void QTodoComboWidget::showMenu()
 	connect(menu,SIGNAL(activated(int)),this,SLOT(menuActivated(int)));
 	QPoint pos = mapToGlobal(QPoint(0,height()));
 
-	menu->sizeHint(); //we need this call so that menu->height() and menu->width() work correctly, before the popup is shown
+	int menu_height = menu->sizeHint().height(); //we need this call so that menu->height() and menu->width() work correctly, before the popup is shown
 
-	if(menu->height()+pos.y() > QApplication::desktop()->height())
-		pos = mapToGlobal(QPoint(0,-menu->height()));
+	if(menu_height+pos.y() > QApplication::desktop()->height())
+		pos = mapToGlobal(QPoint(0,-menu_height));
 	if(pos.x()+menu->width() > QApplication::desktop()->width())
 		pos.setX(pos.x() - ((pos.x() + menu->width()) - QApplication::desktop()->width()));
 	menu->move(pos);

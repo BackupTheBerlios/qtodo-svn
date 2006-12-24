@@ -105,7 +105,7 @@ void QTodoSettings::accept()
 void QTodoSettings::showHelp()
 {
 	QTodoHelp* help = new QTodoHelp();
-	QTodoMisc::windowToCurrentDisplay(help->winId()); //FIXME: add "activate(const Window&) to reduce overhead
+	QTodoMisc::activateWindow(help->winId());
 	help->exec();
 }
 

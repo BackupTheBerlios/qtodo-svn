@@ -57,7 +57,7 @@ bool QTodoParser::isSection()
 
 unsigned int QTodoParser::delimiterDepth()
 {
-	if(((*it).find(QRegExp("^[ |\t]*-"))) == 0) //FIXME: doubled code from isDelimiter()
+	if(isDelimiter())
 	{
 		cur_depth = ((*it).find("-"));
 		return cur_depth;

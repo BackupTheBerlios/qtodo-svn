@@ -103,9 +103,17 @@ void QTodoExporter::accept()
 	QFile file(directory->text()+"/"+filename->text());
 	if(file.open(IO_WriteOnly))
 	{
-		QTextStream stream(&file);
-		stream.setEncoding(plugin->getEncoding());
-		stream <<plugin->getString();
+		if(plugin->isBinary())
+		{
+			QDataStream stream(&file);
+			stream.writeRawBytes(plugin->getByteArray().data(),plugin->getByteArray().count());
+		}
+		else
+		{
+			QTextStream stream(&file);
+			stream.setEncoding(plugin->getEncoding());
+			stream<<plugin->getString();
+		}
 		file.close();
 	}
 

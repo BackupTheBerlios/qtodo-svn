@@ -25,6 +25,7 @@
 #define QTODO_EXPORT_PLUGIN_BASE
 
 class QTodoListWidget;
+class QTodoListHeaderWidget;
 class QTodoExportPluginBase;
 
 typedef QTodoExportPluginBase* (*fptr)();
@@ -63,12 +64,15 @@ class QTodoExportPluginBase
 
 	virtual void doExport() = 0;
 	const QString& getString();
+	virtual const QByteArray& getByteArray();
 	QTextStream::Encoding getEncoding() { return encoding; }
 	void setEncoding(QTextStream::Encoding _encoding) { encoding = _encoding; }
 	void save(QTextStream&);
+	void setBinary(bool);
+	bool isBinary();
 
 	protected:
-	QTodoExportPluginBase() { encoding = QTextStream::Locale; }
+	QTodoExportPluginBase() { encoding = QTextStream::Locale; binary = false; }
 	virtual ~QTodoExportPluginBase() {};
 
 	QTodoListIterator& listIterator();
@@ -79,13 +83,16 @@ class QTodoExportPluginBase
 	void add(const QString&);
 	QString name();
 	QString description();
+	QTodoListHeaderWidget* header();
 
 	QString result;
+	QByteArray byte_result;
 
 	private:
 	QTodoListWidget* list_widget;
 	QTodoListIterator* list_iterator;
 	QTextStream::Encoding encoding;
+	bool binary;
 };
 
 #endif
